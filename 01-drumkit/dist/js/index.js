@@ -9602,8 +9602,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -9665,25 +9663,36 @@ var Index = function (_React$Component) {
 					var audio = new Audio("sounds/tink.wav");
 					break;
 				default:
+					var audio = null;
 					break;
 			}
 			this.setState({
 				playing: key
 			});
-			audio.play();
+			setTimeout(this.removeTransition.bind(this), 1500);
+			if (!!audio) {
+				audio.play();
+			}
+		}
+	}, {
+		key: 'removeTransition',
+		value: function removeTransition() {
+			this.setState({
+				playing: false
+			});
 		}
 	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'main' },
+				null,
 				_react2.default.createElement(
 					'div',
 					{ className: 'keys' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 65 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9691,13 +9700,13 @@ var Index = function (_React$Component) {
 						),
 						_react2.default.createElement(
 							'span',
-							_defineProperty({ className: 'sound' }, 'className', 'playing'),
+							{ className: 'sound' },
 							'clap!'
 						)
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 83 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9711,7 +9720,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 68 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9725,7 +9734,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 70 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9739,7 +9748,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 71 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9753,7 +9762,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 72 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9767,7 +9776,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 74 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9781,7 +9790,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 75 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,
@@ -9795,7 +9804,7 @@ var Index = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'key' },
+						{ className: "key" + (this.state.playing === 76 ? " playing" : '') },
 						_react2.default.createElement(
 							'kbd',
 							null,

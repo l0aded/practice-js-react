@@ -1,4 +1,3 @@
-/* @flow */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -11,14 +10,13 @@ class Index extends React.Component<Props> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			playing: false
+			playing: false,
 		};
 	}
 
 	componentWillMount() {
 		document.addEventListener("keydown", this.playSound.bind(this));
 	}
-
 
 	playSound(e) {
 	  var key = e.keyCode
@@ -51,53 +49,61 @@ class Index extends React.Component<Props> {
 	      var audio = new Audio("sounds/tink.wav");
 	      break;
 	    default:
+				var audio = null;
 	      break;
 	  }
 		this.setState({
 			playing: key
 		})
-	  audio.play();
-
+		setTimeout(this.removeTransition.bind(this), 1500)
+		if (!!audio) {
+			audio.play();
+		}
 	}
 
+	removeTransition() {
+		this.setState({
+			playing: false
+		})
+	}
 
 	render() {
 		return (
-			<div className="main">
+			<div>
 				<div className="keys">
-			    <div className="key" >
+					<div className={"key" + (this.state.playing === 65 ? " playing" : '')}>
 			      <kbd>A</kbd>
-			      <span className="sound" className="playing">clap!</span>
+			      <span className="sound" >clap!</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 83 ? " playing" : '')}>
 			      <kbd>S</kbd>
 			      <span className="sound">hihat</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 68 ? " playing" : '')}>
 			      <kbd>D</kbd>
 			      <span className="sound">kick</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 70 ? " playing" : '')}>
 			      <kbd>F</kbd>
 			      <span className="sound">openhat</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 71 ? " playing" : '')}>
 			      <kbd>G</kbd>
 			      <span className="sound">boom</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 72 ? " playing" : '')}>
 			      <kbd>H</kbd>
 			      <span className="sound">ride</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 74 ? " playing" : '')}>
 			      <kbd>J</kbd>
 			      <span className="sound">snare</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 75 ? " playing" : '')}>
 			      <kbd>K</kbd>
 			      <span className="sound">tom</span>
 			    </div>
-			    <div className="key">
+			    <div className={"key" + (this.state.playing === 76 ? " playing" : '')}>
 			      <kbd>L</kbd>
 			      <span className="sound">tink</span>
 			    </div>
